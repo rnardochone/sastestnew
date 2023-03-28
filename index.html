@@ -7,8 +7,44 @@
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
     <link rel="manifest" href="manifest.webmanifest">
+    
+    
   </head>
   <body>
+    <script>
+      console.log("Changed");
+    // check if the browser supports the Fullscreen API
+if (document.fullscreenEnabled || document.webkitFullscreenEnabled || document.mozFullScreenEnabled || document.msFullscreenEnabled) {
+  // add an event listener for the orientationchange event
+  window.addEventListener('orientationchange', function () {
+    // check if the device is in landscape mode
+    if (window.orientation == 90 || window.orientation == -90) {
+      // request full screen mode
+      var element = document.documentElement;
+      if (element.requestFullscreen) {
+        element.requestFullscreen();
+      } else if (element.webkitRequestFullscreen) {
+        element.webkitRequestFullscreen();
+      } else if (element.mozRequestFullScreen) {
+        element.mozRequestFullScreen();
+      } else if (element.msRequestFullscreen) {
+        element.msRequestFullscreen();
+      }
+    } else {
+      // exit full screen mode
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      } else if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+      } else if (document.mozCancelFullScreen) {
+        document.mozCancelFullScreen();
+      } else if (document.msExitFullscreen) {
+        document.msExitFullscreen();
+      }
+    }
+  }, false);
+}
+    </script>
     <div id="unity-container">
       <canvas id="unity-canvas" width=960 height=600></canvas>
       <div id="unity-loading-bar">
